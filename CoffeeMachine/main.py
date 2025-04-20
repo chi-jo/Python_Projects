@@ -47,7 +47,7 @@ def enough_money(money,cost):
 
 def give_change(money_received, cost_of_beverage):
     change = round(money_received - cost_of_beverage,2)
-    return f" Your change is ${change}"
+    return f" Here's your change: ${change}"
 
 def adjust_inventory(money,user_input,resources):
     resources["water"] -= MENU[user_input]["ingredients"]["water"]
@@ -59,8 +59,10 @@ def adjust_inventory(money,user_input,resources):
 def coffee_machine():
     user_input = input("What would you like? (espresso/latte/cappuccino): ")
     if user_input == "report":
-        for k,v in RESOURCES.items():
-            print(f"{k}: {v}")
+        print(f"Water: {RESOURCES["water"]}ml")
+        print(f"Milk: {RESOURCES["milk"]}ml")
+        print(f"Coffee: {RESOURCES["coffee"]}g")
+        print(f"Money: ${RESOURCES["money"]}")
         coffee_machine()
 
     elif user_input == "espresso" or user_input == "latte" or user_input == "cappuccino":
@@ -87,3 +89,5 @@ def coffee_machine():
     else:
         print("input wasn't recognized")
         coffee_machine()
+
+coffee_machine()
