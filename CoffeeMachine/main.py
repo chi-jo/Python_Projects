@@ -35,7 +35,11 @@ def check_resources(u_ip, resources):
     else:
         return MENU[u_ip]["ingredients"]["water"] < resources["water"] and MENU[u_ip]["ingredients"]["coffee"] < resources["coffee"] and MENU[u_ip]["ingredients"]["milk"] < resources["milk"]
 
-def total_money(q, d, n, p):
+def total_money():
+    q = int(input("How many quarters?: "))
+    d= int(input("How many dimes?: "))
+    n = int(input("How many nickles?: "))
+    p = int(input("How many pennies?: "))
     money = q * 0.25 + d * 0.1 + n * 0.05 + p * 0.01
     return money
 
@@ -68,11 +72,7 @@ def coffee_machine():
     elif user_input == "espresso" or user_input == "latte" or user_input == "cappuccino":
         if check_resources(u_ip=user_input, resources=RESOURCES):
             print("Please insert coins.")
-            quarters = int(input("How many quarters?: "))
-            dimes = int(input("How many dimes?: "))
-            nickles = int(input("How many nickles?: "))
-            pennies = int(input("How many pennies?: "))
-            user_money = total_money(q=quarters,d=dimes,n=nickles,p=pennies)
+            user_money = total_money()
             cost_of_beverage = MENU[user_input]["cost"]
             if enough_money(money=user_money, cost=cost_of_beverage):
                 print(give_change(money_received=user_money,cost_of_beverage=cost_of_beverage))
